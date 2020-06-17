@@ -54,10 +54,17 @@ namespace Student_Management
 
         private void metroTile4_Click(object sender, EventArgs e)
         {
-            ChangeEnabledState();
-            this.Validate();
-            this.stuCouBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            try
+            {
+                ChangeEnabledState();
+                this.Validate();
+                this.stuCouBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            }
+            catch(Exception ex)
+            {
+                DialogResult result = MessageBox.Show("对不起，数据库中无此学号对应的学生/无对应的课程号，添加失败", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            }
         }
 
         private void metroTile1_Click(object sender, EventArgs e)
