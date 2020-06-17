@@ -38,6 +38,8 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.classBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.student_Manage_DB = new Student_Management.Student_Manage_DB();
             this.label1 = new System.Windows.Forms.Label();
             this.classNoTextBox = new System.Windows.Forms.TextBox();
             this.departNoTextBox = new System.Windows.Forms.TextBox();
@@ -51,8 +53,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.classBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.classBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.student_Manage_DB = new Student_Management.Student_Manage_DB();
             this.toolStripButton1 = new MetroFramework.Controls.MetroTile();
             this.metroStyleManager = new MetroFramework.Components.MetroStyleManager();
             this.toolStripButton2 = new MetroFramework.Controls.MetroTile();
@@ -67,11 +67,11 @@
             departNoLabel = new System.Windows.Forms.Label();
             classNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.classDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.student_Manage_DB)).BeginInit();
             this.gbEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.classBindingNavigator)).BeginInit();
             this.classBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.classBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.student_Manage_DB)).BeginInit();
             this.SuspendLayout();
             // 
             // classNoLabel
@@ -141,6 +141,16 @@
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 300;
             // 
+            // classBindingSource
+            // 
+            this.classBindingSource.DataMember = "Class";
+            this.classBindingSource.DataSource = this.student_Manage_DB;
+            // 
+            // student_Manage_DB
+            // 
+            this.student_Manage_DB.DataSetName = "Student_Manage_DB";
+            this.student_Manage_DB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -152,6 +162,8 @@
             // 
             // classNoTextBox
             // 
+            this.classNoTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.classNoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.classBindingSource, "ClassNo", true));
             this.classNoTextBox.Location = new System.Drawing.Point(121, 72);
             this.classNoTextBox.Name = "classNoTextBox";
             this.classNoTextBox.ReadOnly = true;
@@ -161,6 +173,7 @@
             // 
             // departNoTextBox
             // 
+            this.departNoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.classBindingSource, "DepartNo", true));
             this.departNoTextBox.Location = new System.Drawing.Point(121, 103);
             this.departNoTextBox.Name = "departNoTextBox";
             this.departNoTextBox.ReadOnly = true;
@@ -169,6 +182,7 @@
             // 
             // classNameTextBox
             // 
+            this.classNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.classBindingSource, "ClassName", true));
             this.classNameTextBox.Location = new System.Drawing.Point(121, 134);
             this.classNameTextBox.Name = "classNameTextBox";
             this.classNameTextBox.ReadOnly = true;
@@ -265,16 +279,6 @@
             this.classBindingNavigator.Size = new System.Drawing.Size(929, 27);
             this.classBindingNavigator.TabIndex = 0;
             this.classBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // classBindingSource
-            // 
-            this.classBindingSource.DataMember = "Class";
-            this.classBindingSource.DataSource = this.student_Manage_DB;
-            // 
-            // student_Manage_DB
-            // 
-            this.student_Manage_DB.DataSetName = "Student_Manage_DB";
-            this.student_Manage_DB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // toolStripButton1
             // 
@@ -420,13 +424,13 @@
             this.Text = "frmClass";
             this.Load += new System.EventHandler(this.frmClass_Load);
             ((System.ComponentModel.ISupportInitialize)(this.classDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.student_Manage_DB)).EndInit();
             this.gbEdit.ResumeLayout(false);
             this.gbEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.classBindingNavigator)).EndInit();
             this.classBindingNavigator.ResumeLayout(false);
             this.classBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.classBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.student_Manage_DB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

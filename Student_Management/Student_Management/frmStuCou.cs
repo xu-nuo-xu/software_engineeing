@@ -66,7 +66,7 @@ namespace Student_Management
         {
             try
             {
-                if(Convert.ToDecimal(gradeTextBox.Text)<0)
+                if(Convert.ToDecimal(gradeTextBox.Text)<0 || Convert.ToDecimal(gradeTextBox.Text) > 100)
                 {
                     DialogResult result = MessageBox.Show("对不起，输入成绩无效", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     frmStuCou f = new frmStuCou();

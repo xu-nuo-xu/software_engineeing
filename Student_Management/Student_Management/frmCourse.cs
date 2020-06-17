@@ -137,6 +137,12 @@ namespace Student_Management
             catch(Exception ex)
             {
                 DialogResult result = MessageBox.Show("该课程号已经存在，请重新确认", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                frmCourse f =  new frmCourse();
+                this.Close();
+                f = new frmCourse();
+                f.Show();
+                f.Focus();
+                return;
             }
         }
 
