@@ -132,10 +132,23 @@ namespace Student_Management
 
         private void metroTile3_Click(object sender, EventArgs e)
         {
-            ChangeEnabledState();
-            this.Validate();
-            this.classBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            try
+            {
+                ChangeEnabledState();
+                this.Validate();
+                this.classBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            }
+            catch (Exception ex)
+            {
+                DialogResult result = MessageBox.Show("对不起，该班级已存在", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                frmClass f = new frmClass();
+                this.Close();
+                f = new frmClass();
+                f.Show();
+                f.Focus();
+                return;
+            }
         }
 
         private void metroTile4_Click(object sender, EventArgs e)
