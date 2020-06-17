@@ -103,11 +103,14 @@
             // 
             // classDataGridView
             // 
+            this.classDataGridView.AutoGenerateColumns = false;
+            this.classDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.classDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.classDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
+            this.classDataGridView.DataSource = this.classBindingSource;
             this.classDataGridView.Location = new System.Drawing.Point(26, 218);
             this.classDataGridView.Name = "classDataGridView";
             this.classDataGridView.ReadOnly = true;
