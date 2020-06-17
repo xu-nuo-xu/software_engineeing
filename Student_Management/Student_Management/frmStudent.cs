@@ -35,6 +35,8 @@ namespace Student_Management
 
         private void frmStudent_Load(object sender, EventArgs e)
         {
+            // TODO: 这行代码将数据加载到表“student_Manage_DB.StuCou”中。您可以根据需要移动或删除它。
+            this.stuCouTableAdapter.Fill(this.student_Manage_DB.StuCou);
             // TODO: 这行代码将数据加载到表“student_Manage_DB.Class”中。您可以根据需要移动或删除它。
             this.classTableAdapter.Fill(this.student_Manage_DB.Class);
             // TODO: 这行代码将数据加载到表“student_Manage_DB.Student”中。您可以根据需要移动或删除它。
@@ -100,13 +102,29 @@ namespace Student_Management
             ChangeEnabledState();
             this.Validate();
             this.studentBindingSource.EndEdit();
+            
             this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
         }
 
         private void tsbCancel_Click(object sender, EventArgs e)
         {
             ChangeEnabledState();
-            this.studentBindingSource.CancelEdit();
+            this.classBindingSource.CancelEdit();
+        }
+
+        private void classBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbEdit_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

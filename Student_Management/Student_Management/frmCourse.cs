@@ -127,16 +127,28 @@ namespace Student_Management
 
         private void toolStripButton_Click(object sender, EventArgs e)
         {
-            ChangeEnabledState();
-            this.Validate();
-            this.courseBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            try
+            {
+                ChangeEnabledState();
+                this.Validate();
+                this.courseBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            }
+            catch(Exception ex)
+            {
+                DialogResult result = MessageBox.Show("该课程号已经存在，请重新确认", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            }
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             ChangeEnabledState();
             this.courseBindingSource.CancelEdit();
+        }
+
+        private void courseDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

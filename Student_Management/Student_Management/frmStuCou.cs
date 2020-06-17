@@ -40,6 +40,16 @@ namespace Student_Management
         private void StuCou_Load(object sender, EventArgs e)
         {
             // TODO: 这行代码将数据加载到表“student_Manage_DB.StuCou”中。您可以根据需要移动或删除它。
+            if(CPublic.isManager)
+            {
+
+            }
+            else
+            {
+                toolStripButton1.Enabled = false;
+                toolStripButton2.Enabled = false;
+                toolStripButton3.Enabled = false;
+            }
             this.stuCouTableAdapter.Fill(this.student_Manage_DB.StuCou);
 
         }
@@ -56,14 +66,25 @@ namespace Student_Management
         {
             try
             {
+                if(Convert.ToDecimal(gradeTextBox.Text)<0)
+                {
+                    DialogResult result = MessageBox.Show("对不起，输入成绩无效", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    frmStuCou f = new frmStuCou();
+                    this.Close();
+                    f = new frmStuCou();
+                    f.Show();
+                    f.Focus();
+                    return;
+                }
                 ChangeEnabledState();
                 this.Validate();
                 this.stuCouBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            
             }
             catch(Exception ex)
             {
-                DialogResult result = MessageBox.Show("对不起，数据库中无此学号对应的学生/无对应的课程号，添加失败", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("对不起，数据库中无此学号对应的学生/无对应的课程号/重复录入，请检查，添加失败", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             }
         }
 
@@ -100,6 +121,11 @@ namespace Student_Management
         }
 
         private void stuCouBindingNavigator_RefreshItems(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stuCouDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

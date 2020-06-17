@@ -41,7 +41,7 @@ namespace Student_Management
             var db = new dc_student_managementDataContext();
             
                 var results = from c in db.Student
-                              where c.StuName.Contains(metroTextBox2.Text)
+                              where c.StuName.Equals(metroTextBox2.Text)
                               select c;
         
             if (results.Count() == 0)

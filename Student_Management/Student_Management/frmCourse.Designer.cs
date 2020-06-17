@@ -277,6 +277,7 @@
             this.courseDataGridView.RowTemplate.Height = 27;
             this.courseDataGridView.Size = new System.Drawing.Size(417, 413);
             this.courseDataGridView.TabIndex = 8;
+            this.courseDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.courseDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 

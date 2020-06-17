@@ -123,6 +123,7 @@
             // 
             this.departmentBindingSource.DataMember = "Department";
             this.departmentBindingSource.DataSource = this.student_Manage_DB;
+            this.departmentBindingSource.CurrentChanged += new System.EventHandler(this.departmentBindingSource_CurrentChanged);
             // 
             // student_Manage_DB
             // 
@@ -271,6 +272,7 @@
             this.departNameTextBox.ReadOnly = true;
             this.departNameTextBox.Size = new System.Drawing.Size(184, 25);
             this.departNameTextBox.TabIndex = 4;
+            this.departNameTextBox.TextChanged += new System.EventHandler(this.departNameTextBox_TextChanged);
             // 
             // departNoTextBox
             // 

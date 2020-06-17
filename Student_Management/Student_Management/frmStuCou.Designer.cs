@@ -208,12 +208,12 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
             this.stuCouDataGridView.DataSource = this.stuCouBindingSource;
-            this.stuCouDataGridView.Enabled = false;
             this.stuCouDataGridView.Location = new System.Drawing.Point(48, 252);
             this.stuCouDataGridView.Name = "stuCouDataGridView";
             this.stuCouDataGridView.RowTemplate.Height = 27;
             this.stuCouDataGridView.Size = new System.Drawing.Size(493, 303);
             this.stuCouDataGridView.TabIndex = 1;
+            this.stuCouDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stuCouDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 

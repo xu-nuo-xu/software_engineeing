@@ -77,21 +77,42 @@ namespace Student_Management
         {
             if (departmentBindingSource.Current != null)
             {
-                if (MessageBox.Show("确定删除吗？", "确定", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
+                try
                 {
-                    departmentBindingSource.RemoveCurrent();
-                    this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+                    if (MessageBox.Show("确定删除吗？", "确定", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        departmentBindingSource.RemoveCurrent();
+                        this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+                        
+                    }
+                }
+                catch(Exception ex)
+                { 
+                    DialogResult result = MessageBox.Show("违规操作，删除失败", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    frmDepartment f = frmDepartment.Instacne();
+                    f.Close();
+                    //f.MdiParent = this;
+                    f= frmDepartment.Instacne();
+                    f.Show();
+                    f.Focus();
                 }
             }
         }
 
         private void tsbSave_Click_1(object sender, EventArgs e)
         {
-            ChangeEnabledState();
-            this.Validate();
-            this.departmentBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            try
+            {
+                ChangeEnabledState();
+                this.Validate();
+                this.departmentBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.student_Manage_DB);
+            }
+            catch (Exception ex)
+            {
+                DialogResult result = MessageBox.Show("对不起，输入有误，请检查", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            }
         }
 
         private void tsbCancel_Click_1(object sender, EventArgs e)
@@ -111,6 +132,16 @@ namespace Student_Management
         }
 
         private void bindingNavigatorMovePreviousItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void departNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void departmentBindingSource_CurrentChanged(object sender, EventArgs e)
         {
 
         }

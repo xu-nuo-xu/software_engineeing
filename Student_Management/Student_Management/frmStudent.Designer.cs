@@ -68,14 +68,17 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.studentDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.数据 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.studentTableAdapter1 = new Student_Management.Student_Manage_DBTableAdapters.StudentTableAdapter();
+            this.fKStuCouStudentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stuCouTableAdapter = new Student_Management.Student_Manage_DBTableAdapters.StuCouTableAdapter();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             stuNoLabel = new System.Windows.Forms.Label();
             classNoLabel = new System.Windows.Forms.Label();
             stuNameLabel = new System.Windows.Forms.Label();
@@ -91,6 +94,7 @@
             this.tsControl.SuspendLayout();
             this.gbEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKStuCouStudentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // stuNoLabel
@@ -306,6 +310,7 @@
             // 
             this.classBindingSource.DataMember = "Class";
             this.classBindingSource.DataSource = this.student_Manage_DB;
+            this.classBindingSource.CurrentChanged += new System.EventHandler(this.classBindingSource_CurrentChanged);
             // 
             // classTableAdapter
             // 
@@ -394,15 +399,15 @@
             this.gbEdit.Controls.Add(classNoLabel);
             this.gbEdit.Controls.Add(this.stuNameTextBox);
             this.gbEdit.Controls.Add(stuNameLabel);
-            this.gbEdit.Location = new System.Drawing.Point(681, 184);
+            this.gbEdit.Location = new System.Drawing.Point(672, 184);
             this.gbEdit.Name = "gbEdit";
-            this.gbEdit.Size = new System.Drawing.Size(347, 249);
+            this.gbEdit.Size = new System.Drawing.Size(356, 240);
             this.gbEdit.TabIndex = 16;
             this.gbEdit.TabStop = false;
+            this.gbEdit.Enter += new System.EventHandler(this.gbEdit_Enter);
             // 
             // textBox2
             // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.studentBindingSource, "Sex", true));
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentBindingSource, "Sex", true));
             this.textBox2.Location = new System.Drawing.Point(118, 136);
             this.textBox2.Name = "textBox2";
@@ -412,21 +417,22 @@
             // 
             // textBox1
             // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.studentBindingSource, "ClassNo", true));
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.studentBindingSource, "ClassNo", true));
-            this.textBox1.Location = new System.Drawing.Point(118, 74);
+            this.textBox1.Location = new System.Drawing.Point(118, 76);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(200, 25);
             this.textBox1.TabIndex = 13;
+            this.textBox1.Tag = " ";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // studentDataGridView
             // 
             this.studentDataGridView.AutoGenerateColumns = false;
             this.studentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.studentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
@@ -438,48 +444,6 @@
             this.studentDataGridView.RowTemplate.Height = 27;
             this.studentDataGridView.Size = new System.Drawing.Size(625, 494);
             this.studentDataGridView.TabIndex = 16;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "StuNo";
-            this.dataGridViewTextBoxColumn1.HeaderText = "StuNo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ClassNo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "ClassNo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "StuName";
-            this.dataGridViewTextBoxColumn3.HeaderText = "StuName";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Sex";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Sex";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "BirthDay";
-            this.dataGridViewTextBoxColumn5.HeaderText = "BirthDay";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Pwd";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Pwd";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // 数据
             // 
@@ -498,6 +462,60 @@
             this.button1.TabIndex = 18;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // studentTableAdapter1
+            // 
+            this.studentTableAdapter1.ClearBeforeFill = true;
+            // 
+            // fKStuCouStudentBindingSource
+            // 
+            this.fKStuCouStudentBindingSource.DataSource = this.studentBindingSource;
+            // 
+            // stuCouTableAdapter
+            // 
+            this.stuCouTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ClassNo";
+            this.dataGridViewTextBoxColumn2.HeaderText = "ClassNo";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Pwd";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Pwd";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "BirthDay";
+            this.dataGridViewTextBoxColumn5.HeaderText = "BirthDay";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Sex";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Sex";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "StuName";
+            this.dataGridViewTextBoxColumn3.HeaderText = "StuName";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "StuNo";
+            this.dataGridViewTextBoxColumn1.HeaderText = "StuNo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // frmStudent
             // 
@@ -527,6 +545,7 @@
             this.gbEdit.ResumeLayout(false);
             this.gbEdit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKStuCouStudentBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -565,13 +584,16 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView studentDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Label 数据;
+        private System.Windows.Forms.Button button1;
+        private Student_Manage_DBTableAdapters.StudentTableAdapter studentTableAdapter1;
+        private System.Windows.Forms.BindingSource fKStuCouStudentBindingSource;
+        private Student_Manage_DBTableAdapters.StuCouTableAdapter stuCouTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.Label 数据;
-        private System.Windows.Forms.Button button1;
     }
 }
